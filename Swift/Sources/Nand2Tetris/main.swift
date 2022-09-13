@@ -1,1 +1,1 @@
-print("Hello, world!")
+// swiftlint:disable all
