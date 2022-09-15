@@ -23,6 +23,7 @@ func xor(a: Bit, b: Bit) -> Bit {
     )
 }
 
+// Out = (A and not Sel) or (B and Sel)
 func mux(a: Bit, b: Bit, sel: Bit) -> Bit {
     or(
         a: and(a: a, b: not(sel)),
