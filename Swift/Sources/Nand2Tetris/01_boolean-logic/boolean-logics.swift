@@ -22,3 +22,10 @@ func xor(a: Bit, b: Bit) -> Bit {
         b: nand(a: a, b: b)
     )
 }
+
+func mux(a: Bit, b: Bit, sel: Bit) -> Bit {
+    or(
+        a: and(a: a, b: not(sel)),
+        b: and(a: b, b: sel)
+    )
+}
