@@ -49,3 +49,11 @@ func and16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
         }
     )
 }
+
+func or16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
+    .init(
+        a.bits.enumerated().map { offset, element in
+            or(a: element, b: b.bits[offset])
+        }
+    )
+}
