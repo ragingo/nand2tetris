@@ -57,3 +57,11 @@ func or16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
         }
     )
 }
+
+func mux16(a: Bus16Bits, b: Bus16Bits, sel: Bit) -> Bus16Bits {
+    .init(
+        a.bits.enumerated().map { offset, element in
+            mux(a: element, b: b.bits[offset], sel: sel)
+        }
+    )
+}
