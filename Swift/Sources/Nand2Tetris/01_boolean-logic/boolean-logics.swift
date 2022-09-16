@@ -37,3 +37,7 @@ func dmux(input: Bit, sel: Bit) -> (a: Bit, b: Bit) {
         b: and(a: input, b: sel)
     )
 }
+
+func not16(_ input: Bus16Bits) -> Bus16Bits {
+    .init(input.bits.map { not($0) })
+}

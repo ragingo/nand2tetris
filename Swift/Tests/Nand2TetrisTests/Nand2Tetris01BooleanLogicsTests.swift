@@ -65,4 +65,23 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
         XCTAssertTrue(dmux(input: ._0, sel: ._1) == (a: ._0, b: ._0))
         XCTAssertTrue(dmux(input: ._1, sel: ._1) == (a: ._0, b: ._1))
     }
+
+    // Not16
+    func test_not16() throws {
+        _ = {
+            let input: [Bit]  = [._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0]
+            let output: [Bit] = [._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1]
+            XCTAssertEqual(not16(.init(input)), .init(output))
+        }()
+        _ = {
+            let input: [Bit]  = [._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1]
+            let output: [Bit] = [._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0]
+            XCTAssertEqual(not16(.init(input)), .init(output))
+        }()
+        _ = {
+            let input: [Bit]  = [._1, ._1, ._1, ._1, ._0, ._0, ._0, ._0, ._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1]
+            let output: [Bit] = [._0, ._0, ._0, ._0, ._1, ._1, ._1, ._1, ._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0]
+            XCTAssertEqual(not16(.init(input)), .init(output))
+        }()
+    }
 }
