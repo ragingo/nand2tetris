@@ -30,3 +30,10 @@ func mux(a: Bit, b: Bit, sel: Bit) -> Bit {
         b: and(a: b, b: sel)
     )
 }
+
+func dmux(input: Bit, sel: Bit) -> (a: Bit, b: Bit) {
+    (
+        a: and(a: input, b: not(sel)),
+        b: and(a: input, b: sel)
+    )
+}

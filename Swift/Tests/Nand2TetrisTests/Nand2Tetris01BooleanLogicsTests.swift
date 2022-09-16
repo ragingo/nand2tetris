@@ -54,4 +54,15 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
         XCTAssertEqual(mux(a: ._1, b: ._0, sel: ._1), ._0)
         XCTAssertEqual(mux(a: ._1, b: ._1, sel: ._1), ._1)
     }
+
+    // DMux
+    func test_dmux() throws {
+        // sel=0
+        XCTAssertTrue(dmux(input: ._0, sel: ._0) == (a: ._0, b: ._0))
+        XCTAssertTrue(dmux(input: ._1, sel: ._0) == (a: ._1, b: ._0))
+
+        // sel=1
+        XCTAssertTrue(dmux(input: ._0, sel: ._1) == (a: ._0, b: ._0))
+        XCTAssertTrue(dmux(input: ._1, sel: ._1) == (a: ._0, b: ._1))
+    }
 }

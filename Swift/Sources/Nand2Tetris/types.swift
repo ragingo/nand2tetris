@@ -1,6 +1,6 @@
 // swiftlint:disable all
 
-enum Bit: Int {
+enum Bit {
     case _0
     case _1
 }
