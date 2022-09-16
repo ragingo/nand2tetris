@@ -65,3 +65,7 @@ func mux16(a: Bus16Bits, b: Bus16Bits, sel: Bit) -> Bus16Bits {
         }
     )
 }
+
+func or8Way(_ way: Way8) -> Bit {
+    way.bits.reduce(._0, { result, bit in or(a: result, b: bit) })
+}

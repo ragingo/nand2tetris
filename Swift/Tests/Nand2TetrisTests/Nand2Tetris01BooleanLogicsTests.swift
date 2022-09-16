@@ -148,4 +148,12 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
             XCTAssertEqual(mux16(a: .init(a), b: .init(b), sel: ._1), .init(x))
         }()
     }
+
+    // Or8Way
+    func test_or8way() throws {
+        XCTAssertEqual(or8Way(.init([._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0])), ._0)
+        XCTAssertEqual(or8Way(.init([._0, ._0, ._0, ._1, ._0, ._0, ._0, ._0])), ._1)
+        XCTAssertEqual(or8Way(.init([._1, ._0, ._1, ._0, ._1, ._0, ._1, ._0])), ._1)
+        XCTAssertEqual(or8Way(.init([._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1])), ._1)
+    }
 }
