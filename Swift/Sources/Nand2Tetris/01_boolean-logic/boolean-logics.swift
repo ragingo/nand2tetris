@@ -131,3 +131,13 @@ func mux8Way16(_ ways: Way<BusWidth._16>..., sel2: Bit, sel1: Bit, sel0: Bit) ->
         sel: sel2
     )
 }
+
+func dmux4Way(_ ways: Way<BusWidth._1>..., sel1: Bit, sel0: Bit) -> (a: Bit, b: Bit, c: Bit, d: Bit) {
+    precondition(ways.count == 4)
+    return (
+        a: dmux(input: dmux(input: ways[0].bit, sel: sel0).a, sel: sel1).a,
+        b: dmux(input: dmux(input: ways[1].bit, sel: sel0).b, sel: sel1).a,
+        c: dmux(input: dmux(input: ways[2].bit, sel: sel0).a, sel: sel1).b,
+        d: dmux(input: dmux(input: ways[3].bit, sel: sel0).b, sel: sel1).b
+    )
+}
