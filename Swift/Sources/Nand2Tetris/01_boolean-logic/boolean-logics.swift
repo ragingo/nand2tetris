@@ -38,11 +38,11 @@ func dmux(input: Bit, sel: Bit) -> (a: Bit, b: Bit) {
     )
 }
 
-func not16(_ input: Bus16Bits) -> Bus16Bits {
+func not16(_ input: Bus16) -> Bus16 {
     .init(input.bits.map { not($0) })
 }
 
-func and16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
+func and16(a: Bus16, b: Bus16) -> Bus16 {
     .init(
         a.bits.enumerated().map { offset, element in
             and(a: element, b: b.bits[offset])
@@ -50,7 +50,7 @@ func and16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
     )
 }
 
-func or16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
+func or16(a: Bus16, b: Bus16) -> Bus16 {
     .init([
         or(a: a.bits[0], b: b.bits[0]),
         or(a: a.bits[1], b: b.bits[1]),
@@ -71,7 +71,7 @@ func or16(a: Bus16Bits, b: Bus16Bits) -> Bus16Bits {
     ])
 }
 
-func mux16(a: Bus16Bits, b: Bus16Bits, sel: Bit) -> Bus16Bits {
+func mux16(a: Bus16, b: Bus16, sel: Bit) -> Bus16 {
     .init([
         mux(a: a.bits[0], b: b.bits[0], sel: sel),
         mux(a: a.bits[1], b: b.bits[1], sel: sel),
@@ -92,15 +92,16 @@ func mux16(a: Bus16Bits, b: Bus16Bits, sel: Bit) -> Bus16Bits {
     ])
 }
 
-func or8Way(_ way: Way8) -> Bit {
-    or(
+func or8Way(_ ways: Way<BusWidth._1>...) -> Bit {
+    assert(ways.count == 8)
+    return or(
         a: or(
-            a: or(a: way.bits[0], b: way.bits[1]),
-            b: or(a: way.bits[2], b: way.bits[3])
+            a: or(a: ways[0].bit, b: ways[1].bit),
+            b: or(a: ways[2].bit, b: ways[3].bit)
         ),
         b: or(
-            a: or(a: way.bits[4], b: way.bits[5]),
-            b: or(a: way.bits[6], b: way.bits[7])
+            a: or(a: ways[4].bit, b: ways[5].bit),
+            b: or(a: ways[6].bit, b: ways[7].bit)
         )
     )
 }

@@ -151,9 +151,14 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
 
     // Or8Way
     func test_or8way() throws {
-        XCTAssertEqual(or8Way(.init([._0, ._0, ._0, ._0, ._0, ._0, ._0, ._0])), ._0)
-        XCTAssertEqual(or8Way(.init([._0, ._0, ._0, ._1, ._0, ._0, ._0, ._0])), ._1)
-        XCTAssertEqual(or8Way(.init([._1, ._0, ._1, ._0, ._1, ._0, ._1, ._0])), ._1)
-        XCTAssertEqual(or8Way(.init([._1, ._1, ._1, ._1, ._1, ._1, ._1, ._1])), ._1)
+        XCTAssertEqual(or8Way(
+            .init(._0), .init(._0), .init(._0), .init(._0), .init(._0), .init(._0), .init(._0), .init(._0)
+        ), ._0)
+        XCTAssertEqual(or8Way(
+            .init(._1), .init(._0), .init(._1), .init(._0), .init(._1), .init(._0), .init(._1), .init(._0)
+        ), ._1)
+        XCTAssertEqual(or8Way(
+            .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1)
+        ), ._1)
     }
 }

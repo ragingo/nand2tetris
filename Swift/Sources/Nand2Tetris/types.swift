@@ -5,22 +5,42 @@ enum Bit: Equatable {
     case _1
 }
 
-// 1入力16ビット
-struct Bus16Bits: Equatable {
+protocol BusWidthValue {
+    static var value: Int { get }
+}
+
+enum BusWidth {
+    struct _1: BusWidthValue {
+        static let value: Int = 1
+    }
+    struct _16: BusWidthValue {
+        static let value: Int = 16
+    }
+}
+
+struct Bus<T: BusWidthValue>: Equatable {
     let bits: [Bit]
 
     init(_ bits: [Bit]) {
-        precondition(bits.count == 16)
+        precondition(bits.count == T.value)
         self.bits = bits
     }
 }
 
-// 8入力
-struct Way8: Equatable {
-    let bits: [Bit]
+/// 1入力16ビット
+typealias Bus16 = Bus<BusWidth._16>
 
-    init(_ bits: [Bit]) {
-        precondition(bits.count == 8)
-        self.bits = bits
+struct Way<T: BusWidthValue> {
+    let bus: Bus<T>
+
+    init(_ bits: Bit...) {
+        precondition(bits.count == T.value)
+        self.bus = Bus(bits)
+    }
+}
+
+extension Way where T == BusWidth._1 {
+    var bit: Bit {
+        bus.bits[0]
     }
 }
