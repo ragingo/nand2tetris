@@ -198,9 +198,15 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
 
     // DMux4Way
     func test_dmux4Way() throws {
-        XCTAssertTrue(dmux4Way(.init(._1), .init(._0), .init(._0), .init(._0), sel1: ._0, sel0: ._0) == (a: ._1, b: ._0, c: ._0, d: ._0))
-        XCTAssertTrue(dmux4Way(.init(._0), .init(._1), .init(._0), .init(._0), sel1: ._0, sel0: ._1) == (a: ._0, b: ._1, c: ._0, d: ._0))
-        XCTAssertTrue(dmux4Way(.init(._0), .init(._0), .init(._1), .init(._0), sel1: ._1, sel0: ._0) == (a: ._0, b: ._0, c: ._1, d: ._0))
-        XCTAssertTrue(dmux4Way(.init(._0), .init(._0), .init(._0), .init(._1), sel1: ._1, sel0: ._1) == (a: ._0, b: ._0, c: ._0, d: ._1))
+        // input=0
+        XCTAssertTrue(dmux4Way(input: ._0, sel1: ._0, sel0: ._0) == (a: ._0, b: ._0, c: ._0, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._0, sel1: ._0, sel0: ._1) == (a: ._0, b: ._0, c: ._0, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._0, sel1: ._1, sel0: ._0) == (a: ._0, b: ._0, c: ._0, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._0, sel1: ._1, sel0: ._1) == (a: ._0, b: ._0, c: ._0, d: ._0))
+        // input=1
+        XCTAssertTrue(dmux4Way(input: ._1, sel1: ._0, sel0: ._0) == (a: ._1, b: ._0, c: ._0, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._1, sel1: ._0, sel0: ._1) == (a: ._0, b: ._1, c: ._0, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._1, sel1: ._1, sel0: ._0) == (a: ._0, b: ._0, c: ._1, d: ._0))
+        XCTAssertTrue(dmux4Way(input: ._1, sel1: ._1, sel0: ._1) == (a: ._0, b: ._0, c: ._0, d: ._1))
     }
 }
