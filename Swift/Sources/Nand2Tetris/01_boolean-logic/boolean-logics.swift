@@ -39,15 +39,45 @@ func dmux(input: Bit, sel: Bit) -> (a: Bit, b: Bit) {
 }
 
 func not16(_ input: Bus16) -> Bus16 {
-    .init(input.bits.map { not($0) })
+    .init([
+        not(input.bits[0]),
+        not(input.bits[1]),
+        not(input.bits[2]),
+        not(input.bits[3]),
+        not(input.bits[4]),
+        not(input.bits[5]),
+        not(input.bits[6]),
+        not(input.bits[7]),
+        not(input.bits[8]),
+        not(input.bits[9]),
+        not(input.bits[10]),
+        not(input.bits[11]),
+        not(input.bits[12]),
+        not(input.bits[13]),
+        not(input.bits[14]),
+        not(input.bits[15])
+    ])
 }
 
 func and16(a: Bus16, b: Bus16) -> Bus16 {
-    .init(
-        a.bits.enumerated().map { offset, element in
-            and(a: element, b: b.bits[offset])
-        }
-    )
+    .init([
+        and(a: a.bits[0], b: b.bits[0]),
+        and(a: a.bits[1], b: b.bits[1]),
+        and(a: a.bits[2], b: b.bits[2]),
+        and(a: a.bits[3], b: b.bits[3]),
+        and(a: a.bits[4], b: b.bits[4]),
+        and(a: a.bits[5], b: b.bits[5]),
+        and(a: a.bits[6], b: b.bits[6]),
+        and(a: a.bits[7], b: b.bits[7]),
+        and(a: a.bits[8], b: b.bits[8]),
+        and(a: a.bits[9], b: b.bits[9]),
+        and(a: a.bits[10], b: b.bits[10]),
+        and(a: a.bits[11], b: b.bits[11]),
+        and(a: a.bits[12], b: b.bits[12]),
+        and(a: a.bits[13], b: b.bits[13]),
+        and(a: a.bits[14], b: b.bits[14]),
+        and(a: a.bits[15], b: b.bits[15]),
+    ])
 }
 
 func or16(a: Bus16, b: Bus16) -> Bus16 {
