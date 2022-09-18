@@ -170,3 +170,16 @@ func dmux4Way(input: Bit, sel1: Bit, sel0: Bit) -> (a: Bit, b: Bit, c: Bit, d: B
         d: dmux(input: dmux(input: input, sel: sel0).b, sel: sel1).b
     )
 }
+
+func dmux8Way(input: Bit, sel2: Bit, sel1: Bit, sel0: Bit) -> [Bit] {
+    [
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).a, sel: sel1).a, sel: sel2).a,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).b, sel: sel1).a, sel: sel2).a,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).a, sel: sel1).b, sel: sel2).a,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).b, sel: sel1).b, sel: sel2).a,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).a, sel: sel1).a, sel: sel2).b,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).b, sel: sel1).a, sel: sel2).b,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).a, sel: sel1).b, sel: sel2).b,
+        dmux(input: dmux(input: dmux(input: input, sel: sel0).b, sel: sel1).b, sel: sel2).b
+    ]
+}

@@ -209,4 +209,26 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
         XCTAssertTrue(dmux4Way(input: ._1, sel1: ._1, sel0: ._0) == (a: ._0, b: ._0, c: ._1, d: ._0))
         XCTAssertTrue(dmux4Way(input: ._1, sel1: ._1, sel0: ._1) == (a: ._0, b: ._0, c: ._0, d: ._1))
     }
+
+    // DMux8Way
+    func test_dmux8Way() throws {
+        // input=0
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._0, sel1: ._0, sel0: ._0), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._0, sel1: ._0, sel0: ._1), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._0, sel1: ._1, sel0: ._0), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._0, sel1: ._1, sel0: ._1), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._1, sel1: ._0, sel0: ._0), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._1, sel1: ._0, sel0: ._1), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._1, sel1: ._1, sel0: ._0), "0000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._0, sel2: ._1, sel1: ._1, sel0: ._1), "0000_0000".bits())
+        // input=1
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._0, sel1: ._0, sel0: ._0), "1000_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._0, sel1: ._0, sel0: ._1), "0100_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._0, sel1: ._1, sel0: ._0), "0010_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._0, sel1: ._1, sel0: ._1), "0001_0000".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._1, sel1: ._0, sel0: ._0), "0000_1000".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._1, sel1: ._0, sel0: ._1), "0000_0100".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._1, sel1: ._1, sel0: ._0), "0000_0010".bits())
+        XCTAssertEqual(dmux8Way(input: ._1, sel2: ._1, sel1: ._1, sel0: ._1), "0000_0001".bits())
+    }
 }
