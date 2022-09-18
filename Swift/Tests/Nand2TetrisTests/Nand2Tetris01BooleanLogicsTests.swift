@@ -161,4 +161,19 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
             .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1), .init(._1)
         ), ._1)
     }
+
+    // Mux4Way16
+    func test_mux4Way16() throws {
+        _ = {
+            let a: Way<BusWidth._16> = .init("1111_0000_0000_0000".bits())
+            let b: Way<BusWidth._16> = .init("0000_1111_0000_0000".bits())
+            let c: Way<BusWidth._16> = .init("0000_0000_1111_0000".bits())
+            let d: Way<BusWidth._16> = .init("0000_0000_0000_1111".bits())
+
+            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._0), .init("1111_0000_0000_0000".bits()))
+            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._1), .init("0000_1111_0000_0000".bits()))
+            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._0), .init("0000_0000_1111_0000".bits()))
+            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._1), .init("0000_0000_0000_1111".bits()))
+        }()
+    }
 }

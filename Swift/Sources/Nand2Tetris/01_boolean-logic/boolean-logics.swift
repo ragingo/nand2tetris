@@ -93,7 +93,7 @@ func mux16(a: Bus16, b: Bus16, sel: Bit) -> Bus16 {
 }
 
 func or8Way(_ ways: Way<BusWidth._1>...) -> Bit {
-    assert(ways.count == 8)
+    precondition(ways.count == 8)
     return or(
         a: or(
             a: or(a: ways[0].bit, b: ways[1].bit),
@@ -103,5 +103,22 @@ func or8Way(_ ways: Way<BusWidth._1>...) -> Bit {
             a: or(a: ways[4].bit, b: ways[5].bit),
             b: or(a: ways[6].bit, b: ways[7].bit)
         )
+    )
+}
+
+func mux4Way16(_ ways: Way<BusWidth._16>..., sel1: Bit, sel0: Bit) -> Bus16 {
+    precondition(ways.count == 4)
+    return mux16(
+        a: mux16(
+            a: ways[0].bus,
+            b: ways[1].bus,
+            sel: sel0
+        ),
+        b: mux16(
+            a: ways[2].bus,
+            b: ways[3].bus,
+            sel: sel0
+        ),
+        sel: sel1
     )
 }

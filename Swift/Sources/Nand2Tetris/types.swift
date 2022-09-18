@@ -37,10 +37,34 @@ struct Way<T: BusWidthValue> {
         precondition(bits.count == T.value)
         self.bus = Bus(bits)
     }
+
+    init(_ bits: [Bit]) {
+        precondition(bits.count == T.value)
+        self.bus = Bus(bits)
+    }
 }
 
 extension Way where T == BusWidth._1 {
     var bit: Bit {
         bus.bits[0]
+    }
+}
+
+extension String {
+    func bits() -> [Bit] {
+        self
+            .filter {
+                $0 != "_"
+            }
+            .map {
+                switch $0 {
+                case "0":
+                    return Bit._0
+                case "1":
+                    return Bit._1
+                default:
+                    preconditionFailure()
+                }
+            }
     }
 }
