@@ -164,16 +164,35 @@ final class Nand2Tetris01BooleanLogicsTests: XCTestCase {
 
     // Mux4Way16
     func test_mux4Way16() throws {
-        _ = {
-            let a: Way<BusWidth._16> = .init("1111_0000_0000_0000".bits())
-            let b: Way<BusWidth._16> = .init("0000_1111_0000_0000".bits())
-            let c: Way<BusWidth._16> = .init("0000_0000_1111_0000".bits())
-            let d: Way<BusWidth._16> = .init("0000_0000_0000_1111".bits())
+        let a: Way<BusWidth._16> = .init("1111_0000_0000_0000".bits())
+        let b: Way<BusWidth._16> = .init("0000_1111_0000_0000".bits())
+        let c: Way<BusWidth._16> = .init("0000_0000_1111_0000".bits())
+        let d: Way<BusWidth._16> = .init("0000_0000_0000_1111".bits())
 
-            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._0), .init("1111_0000_0000_0000".bits()))
-            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._1), .init("0000_1111_0000_0000".bits()))
-            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._0), .init("0000_0000_1111_0000".bits()))
-            XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._1), .init("0000_0000_0000_1111".bits()))
-        }()
+        XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._0), .init("1111_0000_0000_0000".bits()))
+        XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._0, sel0: ._1), .init("0000_1111_0000_0000".bits()))
+        XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._0), .init("0000_0000_1111_0000".bits()))
+        XCTAssertEqual(mux4Way16(a, b, c, d, sel1: ._1, sel0: ._1), .init("0000_0000_0000_1111".bits()))
+    }
+
+    // Mux8Way16
+    func test_mux8Way16() throws {
+        let a: Way<BusWidth._16> = .init("1100_0000_0000_0000".bits())
+        let b: Way<BusWidth._16> = .init("0011_0000_0000_0000".bits())
+        let c: Way<BusWidth._16> = .init("0000_1100_0000_0000".bits())
+        let d: Way<BusWidth._16> = .init("0000_0011_0000_0000".bits())
+        let e: Way<BusWidth._16> = .init("0000_0000_1100_0000".bits())
+        let f: Way<BusWidth._16> = .init("0000_0000_0011_0000".bits())
+        let g: Way<BusWidth._16> = .init("0000_0011_0000_1100".bits())
+        let h: Way<BusWidth._16> = .init("0000_0011_0000_0011".bits())
+
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._0, sel1: ._0, sel0: ._0), .init("1100_0000_0000_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._0, sel1: ._0, sel0: ._1), .init("0011_0000_0000_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._0, sel1: ._1, sel0: ._0), .init("0000_1100_0000_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._0, sel1: ._1, sel0: ._1), .init("0000_0011_0000_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._1, sel1: ._0, sel0: ._0), .init("0000_0000_1100_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._1, sel1: ._0, sel0: ._1), .init("0000_0000_0011_0000".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._1, sel1: ._1, sel0: ._0), .init("0000_0011_0000_1100".bits()))
+        XCTAssertEqual(mux8Way16(a, b, c, d, e, f, g, h, sel2: ._1, sel1: ._1, sel0: ._1), .init("0000_0011_0000_0011".bits()))
     }
 }

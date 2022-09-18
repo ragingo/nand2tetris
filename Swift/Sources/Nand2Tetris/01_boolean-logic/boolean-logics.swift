@@ -122,3 +122,36 @@ func mux4Way16(_ ways: Way<BusWidth._16>..., sel1: Bit, sel0: Bit) -> Bus16 {
         sel: sel1
     )
 }
+
+func mux8Way16(_ ways: Way<BusWidth._16>..., sel2: Bit, sel1: Bit, sel0: Bit) -> Bus16 {
+    precondition(ways.count == 8)
+    return mux16(
+        a: mux16(
+            a: mux16(
+                a: ways[0].bus,
+                b: ways[1].bus,
+                sel: sel0
+            ),
+            b: mux16(
+                a: ways[2].bus,
+                b: ways[3].bus,
+                sel: sel0
+            ),
+            sel: sel1
+        ),
+        b: mux16(
+            a: mux16(
+                a: ways[4].bus,
+                b: ways[5].bus,
+                sel: sel0
+            ),
+            b: mux16(
+                a: ways[6].bus,
+                b: ways[7].bus,
+                sel: sel0
+            ),
+            sel: sel1
+        ),
+        sel: sel2
+    )
+}
